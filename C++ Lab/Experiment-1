@@ -25,7 +25,7 @@ searched by the user.
 second time the array size will be (n-1).This will go on until the element is found.
 
 
-PROGRAM:- 
+PROGRAM(Using Recursive Functions):- 
 
 #include <stdio.h>
 int RecursiveLS(int arr[], int value, int index, int n)
@@ -68,4 +68,36 @@ int main()
         printf("Element not found");
     }
     return 0;
+}
+
+
+PROGRAM(Uisng Non-Recursive Functions):-
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+ int i, a[20], n, key, flag = 0;
+ printf("Enter the size of an array:-");
+ scanf("%d", &n);
+ printf("Enter the array elements:-");
+ for(i = 0; i < n; i++)
+ {
+  scanf("%d", &a[i]);
+ }
+ printf("Enter the key elements:-");
+ scanf("%d", &key);
+ for(i = 0; i < n; i++)
+ {
+  if(a[i] == key)
+  {
+   flag = 1;
+   break;
+  }
+ }
+ if(flag == 1)
+  printf("the key elements is found at location %d", i + 1);
+ else
+  printf("The key element is not found in the array");
+ getch();
 }
