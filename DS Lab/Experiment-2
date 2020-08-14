@@ -1,6 +1,46 @@
 EXPERIMENT-2
 
-AIM OF THE EXPERIMENT:-
+AIM OF THE EXPERIMENT:-Write a C program that uses both recursive and non recursive functions to perform the following searching operations for a Key value in a given
+List of integers using binary search method.
+
+
+DESCRIPTION OF BINARY SEARCH:-
+The binary Search is also known as half-interval search, logarithmic search, or binary chop.
+1.The binary search searches the position of the target value in a sorted array. 
+2.It compares the target value with the middle element of the array.
+3.If the element is equal to the target element then the algorithm returns the index of the found element.
+4.And if they are not equal,the searching algorithm uses a half section of that array, Based on the comparison of the value,the algorithm uses either of the first-half(when the 
+value is less than the middle ) and the second half ( when the value is greater than the middle ). And does the same for the next array half.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #include<stdio.h>
