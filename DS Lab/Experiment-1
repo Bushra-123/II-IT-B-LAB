@@ -1,1 +1,103 @@
+EXPERIMENT -1
 
+
+AIM OF THE EXPERIMENT:-Write a C program that uses both recursive and non recursive functions to perform the following searching operations for a Key value in a given
+List of integers using linear search method.
+
+
+DESCRIPTION OF LINEAR SEARCH:-
+
+Linear search in C to find whether a number is present in an array. If it's present, then at what location it occurs. It is also known as a sequential search. It is straight
+forward and works as follows:we compare each element with the element to search until we find it or the list ends. Linear search for multiple occurrences and using a function.
+we will print all locations at which required element is found and also the number of times it occurs in the list.It prints the position of the element found inside the if 
+clause and exits.Whenever the element is not found, the function runs to max and returns 0 to calling function to indicate no elements has been found.
+
+
+PROCEDURE EXPLAINING OUTPUT:-
+
+In Linear search,
+1. we search an element or value in a given array by traversing the array from the starting, till the desired element or value is found.
+2. The array is searched sequentially and the position is returned if the key element to be searched is available in the array, otherwise “Element not found” is printed.
+3. Here in this C Program we have created a recursive function called RecursiveLS(), which takes in 4 input parameters and returns the position of element in a array which is
+searched by the user.
+4. If the element that is searched is the first we directly return the index.
+5. But if it is not the first element of array, we decrease the size of array by 1, by eliminating the first element of the array, which means when the RecursiveLS() is called 
+second time the array size will be (n-1).This will go on until the element is found.
+
+
+PROGRAM(Using Recursive Functions):- 
+
+#include <stdio.h>
+int RecursiveLS(int arr[], int value, int index, int n)
+{
+    int pos = 0;
+    if(index >= n)
+    {
+        return 0;
+    }
+    else if (arr[index] == value)
+    {
+        pos = index + 1;
+        return pos;
+    }
+    else
+    {
+        return RecursiveLS(arr, value, index+1, n);
+    }
+    return pos;
+}
+int main()
+{
+    int n, value, pos, m = 0, arr[100];
+    printf("Enter the total elements in the array:-");
+    scanf("%d", &n);
+    printf("Enter the array elements:-\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    printf("Enter the element to search:-");
+    scanf("%d", &value);
+    pos =  RecursiveLS(arr, value, 0, n);
+    if (pos != 0)
+    {
+        printf("Element found at pos %d ", pos);
+    }
+    else
+    {
+        printf("Element not found");
+    }
+    return 0;
+}
+
+
+PROGRAM(Uisng Non-Recursive Functions):-
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+ int i, a[20], n, key, flag = 0;
+ printf("Enter the size of an array:-");
+ scanf("%d", &n);
+ printf("Enter the array elements:-");
+ for(i = 0; i < n; i++)
+ {
+  scanf("%d", &a[i]);
+ }
+ printf("Enter the key elements:-");
+ scanf("%d", &key);
+ for(i = 0; i < n; i++)
+ {
+  if(a[i] == key)
+  {
+   flag = 1;
+   break;
+  }
+ }
+ if(flag == 1)
+  printf("the key elements is found at location %d", i + 1);
+ else
+  printf("The key element is not found in the array");
+ getch();
+}
