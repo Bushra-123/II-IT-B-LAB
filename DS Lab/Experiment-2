@@ -5,6 +5,7 @@ List of integers using binary search method.
 
 
 DESCRIPTION OF BINARY SEARCH:-
+
 The binary Search is also known as half-interval search, logarithmic search, or binary chop.
 1.The binary search searches the position of the target value in a sorted array. 
 2.It compares the target value with the middle element of the array.
@@ -13,70 +14,82 @@ The binary Search is also known as half-interval search, logarithmic search, or 
 value is less than the middle ) and the second half ( when the value is greater than the middle ). And does the same for the next array half.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+PROGRAM(USING RECURSION):-
 
 #include<stdio.h>
-#include<stdlib.h>
-#define size 10
-int binsearch(int[], int, int, int);
-int main() {
-   int num, i, key, position;
-   int low, high, list[size];
-   printf("\nEnter the total number of elements:-");
-   scanf("%d", &num);
-   printf("\nEnter the elements of array:-");
-   for (i = 0; i < num; i++) {
-      scanf("%d", &list[i]);
-   }
-   low = 0;
-   high = num - 1;
-   printf("\nEnter Key element to be searched:-");
-   scanf("%d", &key);
-   position = binsearch(list, key, low, high);
-   if (position != -1) {
-      printf("\nNumber present at %d", (position + 1));
-   } else
-      printf("\n The number is not present in the list");
-   return (0);
+int RecursiveLinearSearch(int [],int,int);
+int main()
+{int i,position,key;
+int a[10]= {11,7,9,16,21,4,15,98,67,31};
+printf("Enter the key element:-");
+scanf("%d",&key);
+position = RecursiveLinearSearch(a,10,key);
+if (position == -1){
+printf("key element is not found.");
 }
-int binsearch(int a[], int x, int low, int high) {
-   int mid;
-   if (low > high)
-      return -1;
-   mid = (low + high) / 2;
-   if (x == a[mid]) {
-      return (mid);
-   } else if (x < a[mid]) {
-      binsearch(a, x, low, mid - 1);
-   } else {
-      binsearch(a, x, mid + 1, high);
+else{
+printf("Key element is found at position %d",position);
+}
+return 0;}
+int RecursiveLinearSearch(int a[],int n,int key)
+{
+if (n > 0){
+if(a[n - 1] == key){
+return n-1;}
+else{
+return RecursiveLinearSearch(a,n-1,key);
+}}
+return -1;
+}
+
+
+PROGRAM(USING NON RECURSION):-
+
+#include<stdio.h>
+int iterativeBsearch(int A[], int size, int element);
+int main() {
+   int i, j, s, n, a[30],search;
+        printf("Enter the size of an array:-\n");
+        scanf("%d", &n);
+ 
+        printf("Enter the elements of an array:- \n");
+        for (i = 0; i < n; ++i)
+            scanf("%d", &a[i]);
+ 
+        for (i = 0; i < n; ++i) 
+        {
+ 
+            for (j = i + 1; j < n; ++j)
+            {
+ 
+                if (a[i] > a[j]) 
+                {
+ 
+                    s =  a[i];
+                    a[i] = a[j];
+                    a[j] = s;
+ 
+                }
+ 
+            }
+        }
+   printf("enter the element want to search:-");
+   scanf("%d",&search);
+   printf("%d is found at Index %d \n",search,iterativeBsearch(a,n,search));
+   return 0;
+}
+int iterativeBsearch(int a[], int size, int element) {
+   int start = 0;
+   int end = size-1;
+   while(start<=end) {
+      int mid = (start+end)/2;
+      if( a[mid] == element) {
+         return mid;
+      } else if( element < a[mid] ) {
+         end = mid-1;
+      } else {
+         start = mid+1;
+      }
    }
+   return -1;
 }
