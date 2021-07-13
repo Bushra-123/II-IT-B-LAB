@@ -1,0 +1,97 @@
+Aim :  To write a C program to implement memory management using segmentation technique.
+
+Algorithm:
+
+Step 1 : Read the base address, number of segments, size of each                segment, memory limit.
+Step 2 : If memory address is less than the base address display               “invalid memory limit”.
+Step 3 : Create the segment table with the segment number and                segment address and display it.
+Step 4 : Read the segment number and displacement.
+Step 5 : If the segment number and displacement is valid compute                  the real address and display the same.
+
+Program:
+
+#include<stdio.h> 
+#include<stdlib.h> 
+struct list 
+{ 
+    int seg;
+    int base; 
+    int limit;
+    struct list *next;
+}*p;
+void insert(struct list *q, int base, int limit, int seg)
+{
+    if(p == NULL)
+    {
+        p = malloc(sizeof(struct list));
+        p -> limit = limit; 
+        p -> base = base;
+        p -> seg = seg;
+        p -> next = NULL; 
+    } 
+    else
+    {
+        while(q->next != NULL)
+        {
+            q = q->next; 
+            printf("yes"); 
+        }
+        q->next = malloc(sizeof(struct list)); 
+        q->next->limit = limit;
+        q->next->base = base;
+        q->next->seg = seg;
+        q->next->next = NULL;
+    }
+}
+int find(struct list *q,int seg)
+{
+    while(q->seg != seg)
+    {
+        q = q->next;
+    }
+    return q->limit; 
+}
+int search(struct list *q,int seg)
+{
+    while(q->seg != seg)
+    {
+        q = q->next;
+    }
+    return q->base;
+}
+int main()
+{
+    p = NULL;
+    int seg, offset, limit, base, c, s, physical;
+    printf("Enter segment table (Enter -1 as segment value for termination) :\n"); 
+    do
+    {
+        printf("Enter segment number : ");
+        scanf("%d", &seg);
+        if(seg!=-1)
+        {
+            printf("Enter base value : ");
+            scanf("%d",&base); 
+            printf("Enter value for limit : "); 
+            scanf("%d",&limit); 
+            insert(p, base, limit, seg);
+        }
+    }
+    while(seg!=-1);
+    printf("Enter offset : ");
+    scanf("%d",&offset);
+    printf("Enter segmentation number : ");
+    scanf("%d",&seg);
+    c = find(p,seg);
+    s = search(p,seg); 
+    if(offset < c)
+    {
+        physical = s + offset;
+        printf("Address in physical memory is : %d\n",physical); 
+    } 
+    else
+        printf("Error"); 
+    return 0;
+}
+
+
